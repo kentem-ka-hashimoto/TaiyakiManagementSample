@@ -1,8 +1,8 @@
-import { UsuTaiyaki } from '../../Models/UsuTaiyaki.js';
+import { UsuTaiyaki } from '../../Models/usuTaiyaki.js';
 import taiyakiKind from '../../Types/kind.js';
 import Size from '../../Types/size.js';
 
-describe('usuTaiyakiTest', () => {
+describe('cusTaiyakiTest', () => {
   test('propertyTest', () => {
     let taiyaki = new UsuTaiyaki(Size.S);
 
