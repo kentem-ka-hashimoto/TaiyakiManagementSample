@@ -8,7 +8,9 @@ export interface Taiyaki {
   // 中身
   get content(): string;
   // 価格
-  get price(): number;
+  // get price(): number;
   // 種類
   get kind(): taiyakiKind;
+
+  getPrice(): number;
 }
