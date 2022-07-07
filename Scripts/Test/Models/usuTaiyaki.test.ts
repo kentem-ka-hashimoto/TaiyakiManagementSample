@@ -10,7 +10,7 @@ describe('usuTaiyakiTest', () => {
 
     expect(taiyaki.content).toBe('あんこ');
 
-    expect(taiyaki.kind).toBe(Size.S);
+    expect(taiyaki.size).toBe(Size.S);
   });
 
   test('getPriceTest', () => {
