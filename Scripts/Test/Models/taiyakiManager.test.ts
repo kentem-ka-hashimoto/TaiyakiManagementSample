@@ -16,7 +16,7 @@ describe(`taiyakiManagerTest`, () => {
     expect(mg.taiyakiArr.length).toBe(0);
 
     // 通常たいやきの追加確認
-    let taiyaki: Taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Usually, Size.S);
+    let taiyaki: Taiyaki = mg.createTaiyaki(taiyakiKind.Usually, Size.S);
     mg.add(taiyaki);
     // 追加されていることを確認
     expect(mg.taiyakiArr.length).toBe(1);
@@ -26,7 +26,7 @@ describe(`taiyakiManagerTest`, () => {
     expect(mg.taiyakiArr[0].content).toBe('あんこ');
 
     // カスタードたい焼きの追加確認
-    taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Custard, Size.M);
+    taiyaki = mg.createTaiyaki(taiyakiKind.Custard, Size.M);
     mg.add(taiyaki);
     // 追加されていることを確認
     expect(mg.taiyakiArr.length).toBe(2);
@@ -36,7 +36,7 @@ describe(`taiyakiManagerTest`, () => {
     expect(mg.taiyakiArr[1].content).toBe('カスタード');
 
     // デラックスたい焼きの追加確認
-    taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Deluxe, Size.L);
+    taiyaki = mg.createTaiyaki(taiyakiKind.Deluxe, Size.L);
     mg.add(taiyaki);
     // 追加されていることを確認
     expect(mg.taiyakiArr.length).toBe(3);
@@ -48,9 +48,9 @@ describe(`taiyakiManagerTest`, () => {
 
   test('removeUsuallyTest', () => {
     let mg = new TaiyakiManager();
-    let taiyaki: Taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Usually, Size.S);
+    let taiyaki: Taiyaki = mg.createTaiyaki(taiyakiKind.Usually, Size.S);
     mg.add(taiyaki);
-    taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Usually, Size.M);
+    taiyaki = mg.createTaiyaki(taiyakiKind.Usually, Size.M);
     mg.add(taiyaki);
 
     // 削除前の確認
@@ -66,9 +66,9 @@ describe(`taiyakiManagerTest`, () => {
 
   test('removeCustardTest', () => {
     let mg = new TaiyakiManager();
-    let taiyaki: Taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Custard, Size.S);
+    let taiyaki: Taiyaki = mg.createTaiyaki(taiyakiKind.Custard, Size.S);
     mg.add(taiyaki);
-    taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Custard, Size.M);
+    taiyaki = mg.createTaiyaki(taiyakiKind.Custard, Size.M);
     mg.add(taiyaki);
 
     // 削除前の確認
@@ -84,9 +84,9 @@ describe(`taiyakiManagerTest`, () => {
 
   test('removeDeluxeTest', () => {
     let mg = new TaiyakiManager();
-    let taiyaki: Taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Deluxe, Size.L);
+    let taiyaki: Taiyaki = mg.createTaiyaki(taiyakiKind.Deluxe, Size.L);
     mg.add(taiyaki);
-    taiyaki = TaiyakiManager.createTaiyaki(taiyakiKind.Deluxe, Size.L);
+    taiyaki = mg.createTaiyaki(taiyakiKind.Deluxe, Size.L);
     mg.add(taiyaki);
 
     // 削除前の確認

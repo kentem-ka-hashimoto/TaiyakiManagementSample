@@ -21,7 +21,7 @@ export class TaiyakiManager {
     this._taiyakiArr.push(taiyaki);
   }
 
-  public static createTaiyaki(kind: taiyakiKind, size: Size):Taiyaki {
+  public createTaiyaki(kind: taiyakiKind, size: Size):Taiyaki {
     switch (kind) {
       case taiyakiKind.Usually:
         return new UsuTaiyaki(size);
