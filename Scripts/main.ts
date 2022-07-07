@@ -2,8 +2,22 @@
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');
 // 終了ボタンの取得
 const endBtn = document.getElementById('close') as HTMLButtonElement;
+// 追加ボタンの取得
+const addBtn = document.getElementById('add') as HTMLButtonElement;
+// 編集ボタンの取得
+const editBtn = document.getElementById('edit') as HTMLButtonElement;
 
 createListView();
+
+// 追加ボタンの処理
+addBtn.addEventListener('click', () => {
+  window.location.href = 'selection.html';
+});
+
+// 編集ボタンの処理
+editBtn.addEventListener('click', () => {
+  window.location.href = 'selection.html';
+});
 
 // 終了ボタンの処理
 endBtn.addEventListener('click', () => {
