@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>たい焼き管理システム</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <title>たい焼き管理システム</title>
+  </head>
+  <body>
+    <header>
+      <button>追加</button>
+      <button>削除</button>
+      <button>編集</button>
+      <button>終了</button>
+      <div id="totalPrice">合計金額:600円</div>
+    </header>
 
-  
-  <script type='module' src="../wwwroot/js/main.js"></script>
-</body>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th id="check">選択</th>
+            <th>種類</th>
+            <th>中身</th>
+            <th>サイズ</th>
+            <th>価格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="check"><input type="checkbox" /></td>
+            <td>通常たい焼き</td>
+            <td>あんこ</td>
+            <td>小</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td id="check"><input type="checkbox" /></td>
+            <td>カスタード</td>
+            <td>カスタード</td>
+            <td>中</td>
+            <td>200</td>
+          </tr>
+          <tr>
+            <td id="check"><input type="checkbox" /></td>
+            <td>デラックスたい焼き</td>
+            <td>生クリームとカスタード</td>
+            <td>大</td>
+            <td>300</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <script type="module" src="../wwwroot/js/main.js"></script>
+  </body>
 </html>
