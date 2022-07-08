@@ -1,3 +1,7 @@
+import { Global } from './Models/Global.js';
+import taiyakiKind from './Types/kind.js';
+import Size from './Types/size.js';
+
 // tbodyの取得
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');
 // 終了ボタンの取得
@@ -29,23 +33,35 @@ endBtn.addEventListener('click', () => {
 
 // 項目リストの作成
 function createListView(): void {
-  const checkBox: HTMLInputElement = document.createElement('input');
-  checkBox.type = 'checkbox';
-  const tdOfCheck: HTMLTableCellElement = document.createElement('td');
-  tdOfCheck.id = 'check';
-  tdOfCheck.appendChild(checkBox);
-  const tdOfKind: HTMLTableCellElement = document.createElement('td');
-  tdOfKind.textContent = '通常たい焼き';
-  const tdOfContent: HTMLTableCellElement = document.createElement('td');
-  tdOfContent.textContent = 'あんこ';
-  const tdOfSize: HTMLTableCellElement = document.createElement('td');
-  tdOfSize.textContent = '小';
-  const tdOfPrice: HTMLTableCellElement = document.createElement('td');
-  tdOfPrice.textContent = '100';
+  Global.getLocalStorage();
+  Global.taiyakiArrMg.taiyakiArr.forEach((taiyaki) => {
+    const checkBox: HTMLInputElement = document.createElement('input');
+    checkBox.type = 'checkbox';
+    const tdOfCheck: HTMLTableCellElement = document.createElement('td');
+    tdOfCheck.id = 'check';
+    tdOfCheck.appendChild(checkBox);
+    const tdOfKind: HTMLTableCellElement = document.createElement('td');
+    tdOfKind.textContent = taiyaki.name;
+    const tdOfContent: HTMLTableCellElement = document.createElement('td');
+    tdOfContent.textContent = taiyaki.content;
+    const tdOfSize: HTMLTableCellElement = document.createElement('td');
 
-  tbody?.appendChild(tdOfCheck);
-  tbody?.appendChild(tdOfKind);
-  tbody?.appendChild(tdOfContent);
-  tbody?.appendChild(tdOfSize);
-  tbody?.appendChild(tdOfPrice);
+    if (taiyaki.size === Size.S) {
+      tdOfSize.textContent = '小';
+    }
+    if (taiyaki.size === Size.M) {
+      tdOfSize.textContent = '中';
+    }
+    if (taiyaki.size === Size.L) {
+      tdOfSize.textContent = '大';
+    }
+    const tdOfPrice: HTMLTableCellElement = document.createElement('td');
+    tdOfPrice.textContent = taiyaki.getPrice().toString();
+
+    tbody?.appendChild(tdOfCheck);
+    tbody?.appendChild(tdOfKind);
+    tbody?.appendChild(tdOfContent);
+    tbody?.appendChild(tdOfSize);
+    tbody?.appendChild(tdOfPrice);
+  });
 }

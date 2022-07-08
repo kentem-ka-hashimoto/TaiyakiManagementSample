@@ -18,8 +18,8 @@ export class Global {
     if (items) {
       const taiyakiArr: string[] = JSON.parse(items);
       taiyakiArr.forEach((taiyaki: any) => {
-        const instance = this._taiyakiArrMg.createTaiyaki(taiyaki._kind, taiyaki._size);
-        this._taiyakiArrMg.add(instance);
+        const instance = Global.taiyakiArrMg.createTaiyaki(taiyaki._kind, taiyaki._size);
+        Global.taiyakiArrMg.add(instance);
       });
     }
   }
