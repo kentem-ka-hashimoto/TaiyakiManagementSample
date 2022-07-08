@@ -15,7 +15,12 @@ const endBtn = document.getElementById('close') as HTMLButtonElement;
 // チェックボックスの取得
 let checks: NodeListOf<HTMLInputElement>;
 
-createListView();
+// 画面ロード時の処理
+window.onload = function () {
+  createListView();
+  disabledCheck();
+};
+
 // 追加ボタンの処理
 addBtn.addEventListener('click', () => {
   localStorage.setItem('role', 'add');
@@ -39,7 +44,6 @@ editBtn.addEventListener('click', () => {
   checks = document.querySelectorAll('input');
   checks.forEach((check, index) => {
     if (check.checked) localStorage.setItem('index', `${index}`);
-    // if (check.checked) localStorage.setItem('kind', `${Global.taiyakiArrMg.taiyakiArr[index].kind}`);
   });
   localStorage.setItem('role', 'edit');
   window.location.href = 'selection.html';
@@ -65,37 +69,48 @@ function createListView(): void {
   deleteList();
   Global.getLocalStorage();
   Global.taiyakiArrMg.taiyakiArr.forEach((taiyaki) => {
+    // チェックボックス
     const checkBox: HTMLInputElement = document.createElement('input');
     checkBox.type = 'checkbox';
+    checkBox.addEventListener('change', () => {
+      disabledCheck();
+    });
     const tdOfCheck: HTMLTableCellElement = document.createElement('td');
     tdOfCheck.id = 'check';
     tdOfCheck.appendChild(checkBox);
+    // 種類
     const tdOfKind: HTMLTableCellElement = document.createElement('td');
     tdOfKind.textContent = taiyaki.name;
+    // 中身(具材)
     const tdOfContent: HTMLTableCellElement = document.createElement('td');
     tdOfContent.textContent = taiyaki.content;
+    // サイズ
     const tdOfSize: HTMLTableCellElement = document.createElement('td');
-
-    if (taiyaki.size === Size.S) {
-      tdOfSize.textContent = '小';
-    }
-    if (taiyaki.size === Size.M) {
-      tdOfSize.textContent = '中';
-    }
-    if (taiyaki.size === Size.L) {
-      tdOfSize.textContent = '大';
-    }
+    if (taiyaki.size === Size.S) tdOfSize.textContent = '小';
+    if (taiyaki.size === Size.M) tdOfSize.textContent = '中';
+    if (taiyaki.size === Size.L) tdOfSize.textContent = '大';
+    // 価格
     const tdOfPrice: HTMLTableCellElement = document.createElement('td');
     tdOfPrice.textContent = taiyaki.getPrice().toString();
 
+    // 追加
     const tr: HTMLTableRowElement = document.createElement('tr');
-
     tr.appendChild(tdOfCheck);
     tr.appendChild(tdOfKind);
     tr.appendChild(tdOfContent);
     tr.appendChild(tdOfSize);
     tr.appendChild(tdOfPrice);
-
     tbody?.appendChild(tr);
   });
+}
+
+// 削除ボタンと編集ボタンの有効判定
+function disabledCheck() {
+  let checkCount: number = 0;
+  checks = document.querySelectorAll('input');
+  checks.forEach((check) => {
+    if (check.checked) checkCount++;
+  });
+  deleteBtn.disabled = 1 > checkCount;
+  editBtn.disabled = 1 !== checkCount;
 }
