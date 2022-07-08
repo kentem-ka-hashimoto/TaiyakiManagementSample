@@ -55,11 +55,9 @@ describe(`taiyakiManagerTest`, () => {
 
     // 削除前の確認
     expect(mg.taiyakiArr.length).toBe(2);
-
     // 初めを削除
     mg.remove(0);
     expect(mg.taiyakiArr.length).toBe(1);
-
     // 削除した値が正しいか確認
     expect(mg.taiyakiArr[0].size).toBe(Size.M);
   });
@@ -73,11 +71,9 @@ describe(`taiyakiManagerTest`, () => {
 
     // 削除前の確認
     expect(mg.taiyakiArr.length).toBe(2);
-
     // 終わりを削除
     mg.remove(1);
     expect(mg.taiyakiArr.length).toBe(1);
-
     // 削除した値が正しいか確認
     expect(mg.taiyakiArr[0].size).toBe(Size.S);
   });
@@ -91,8 +87,7 @@ describe(`taiyakiManagerTest`, () => {
 
     // 削除前の確認
     expect(mg.taiyakiArr.length).toBe(2);
-
-    // 削除
+    // 削除できているかの確認
     mg.remove(0);
     expect(mg.taiyakiArr.length).toBe(1);
   });
