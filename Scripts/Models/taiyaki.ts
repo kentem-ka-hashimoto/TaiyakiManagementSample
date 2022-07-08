@@ -5,6 +5,7 @@ export interface Taiyaki {
   // サイズ(取得と更新可)
   get size(): Size;
   set size(value: Size);
+  get name(): string;
   // 中身
   get content(): string;
   // 価格

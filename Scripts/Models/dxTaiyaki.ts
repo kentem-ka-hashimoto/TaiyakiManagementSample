@@ -4,6 +4,7 @@ import Size from '../Types/size.js';
 
 export class DxTaiyaki implements Taiyaki {
   private _kind: taiyakiKind = taiyakiKind.Deluxe;
+  private _name: string = 'デラックスたい焼き';
   private _content: string = '生クリームとカスタード';
   constructor(private _size: Size) {
     if (this._size === Size.S || this._size === Size.M) {
@@ -13,6 +14,10 @@ export class DxTaiyaki implements Taiyaki {
 
   get kind() {
     return this._kind;
+  }
+
+  get name() {
+    return this._name;
   }
 
   get content() {

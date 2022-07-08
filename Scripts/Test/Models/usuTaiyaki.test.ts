@@ -2,11 +2,13 @@ import { UsuTaiyaki } from '../../Models/usuTaiyaki.js';
 import taiyakiKind from '../../Types/kind.js';
 import Size from '../../Types/size.js';
 
-describe('cusTaiyakiTest', () => {
+describe('usuTaiyakiTest', () => {
   test('propertyTest', () => {
     let taiyaki = new UsuTaiyaki(Size.S);
 
     expect(taiyaki.kind).toBe(taiyakiKind.Usually);
+
+    expect(taiyaki.name).toBe('通常たい焼き');
 
     expect(taiyaki.content).toBe('あんこ');
 

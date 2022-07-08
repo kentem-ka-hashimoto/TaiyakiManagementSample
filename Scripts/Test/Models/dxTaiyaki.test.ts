@@ -8,6 +8,8 @@ describe('dxTaiyakiTest', () => {
 
     expect(taiyaki.kind).toBe(taiyakiKind.Deluxe);
 
+    expect(taiyaki.name).toBe('デラックスたい焼き');
+
     expect(taiyaki.content).toBe('生クリームとカスタード');
 
     expect(taiyaki.size).toBe(Size.L);
