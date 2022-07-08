@@ -18,6 +18,7 @@ let checks: NodeListOf<HTMLInputElement>;
 createListView();
 // 追加ボタンの処理
 addBtn.addEventListener('click', () => {
+  localStorage.setItem('role', 'add');
   window.location.href = 'selection.html';
 });
 
@@ -35,6 +36,12 @@ deleteBtn.addEventListener('click', () => {
 
 // 編集ボタンの処理
 editBtn.addEventListener('click', () => {
+  checks = document.querySelectorAll('input');
+  checks.forEach((check, index) => {
+    if (check.checked) localStorage.setItem('index', `${index}`);
+    // if (check.checked) localStorage.setItem('kind', `${Global.taiyakiArrMg.taiyakiArr[index].kind}`);
+  });
+  localStorage.setItem('role', 'edit');
   window.location.href = 'selection.html';
 });
 
@@ -46,8 +53,16 @@ endBtn.addEventListener('click', () => {
   }
 });
 
+// リストの削除
+function deleteList() {
+  while (tbody?.firstChild) {
+    tbody.removeChild(tbody.firstChild);
+  }
+}
+
 // 項目リストの作成
 function createListView(): void {
+  deleteList();
   Global.getLocalStorage();
   Global.taiyakiArrMg.taiyakiArr.forEach((taiyaki) => {
     const checkBox: HTMLInputElement = document.createElement('input');

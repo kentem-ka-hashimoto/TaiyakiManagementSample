@@ -8,15 +8,17 @@
     <title>たい焼き種類選択</title>
   </head>
   <body>
-    <h4>メニュー</h4>
     <div id="menu">
-      <label><input name="kind" type="radio" checked />通常たい焼き</label>
-      <label><input name="kind" type="radio" />カスタードたい焼き</label>
-      <label><input name="kind" type="radio" />デラックスたい焼き</label>
+      <h4>メニュー</h4>
+      <div id="kind">
+        <label><input name="kind" type="radio"  />通常たい焼き</label>
+        <label><input name="kind" type="radio" />カスタードたい焼き</label>
+        <label><input name="kind" type="radio" />デラックスたい焼き</label>
+      </div>
     </div>
     <h4>サイズ</h4>
     <div id="size">
-      <label><input name="size" type="radio" checked />大</label>
+      <label><input name="size" type="radio"  />大</label>
       <label><input name="size" type="radio" />中</label>
       <label><input name="size" type="radio" />小</label>
     </div>
@@ -25,5 +27,6 @@
     <button id="cancel">キャンセル</button>
 
     <script type="module" src="../wwwroot/js/Models/selection.js"></script>
+    <script type="module" src="../wwwroot/js/Models/edit.js"></script>
   </body>
 </html>
