@@ -4,6 +4,8 @@ import Size from './Types/size.js';
 
 // tbodyの取得
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');
+// 合計金額の表示部分の取得
+let totalPrice: HTMLElement | null = document.getElementById('totalPrice');
 // 追加ボタンの取得
 const addBtn = document.getElementById('add') as HTMLButtonElement;
 // 削除ボタンの取得
@@ -18,6 +20,7 @@ let checks: NodeListOf<HTMLInputElement>;
 // 画面ロード時の処理
 window.onload = function () {
   createListView();
+  setTotalPrice();
   disabledCheck();
 };
 
@@ -57,6 +60,13 @@ endBtn.addEventListener('click', () => {
   }
 });
 
+// 合計金額の取得
+function setTotalPrice(): void {
+  if (totalPrice) {
+    totalPrice.textContent = `合計金額 : ${Global.taiyakiArrMg.getTotalPrice()}円`;
+  }
+}
+
 // リストの削除
 function deleteList() {
   while (tbody?.firstChild) {
@@ -91,7 +101,7 @@ function createListView(): void {
     if (taiyaki.size === Size.L) tdOfSize.textContent = '大';
     // 価格
     const tdOfPrice: HTMLTableCellElement = document.createElement('td');
-    tdOfPrice.textContent = taiyaki.getPrice().toString();
+    tdOfPrice.textContent = `${taiyaki.getPrice()}`;
 
     // 追加
     const tr: HTMLTableRowElement = document.createElement('tr');

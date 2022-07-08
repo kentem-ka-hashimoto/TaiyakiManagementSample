@@ -21,7 +21,15 @@ export class TaiyakiManager {
     this._taiyakiArr.push(taiyaki);
   }
 
-  public createTaiyaki(kind: taiyakiKind, size: Size):Taiyaki {
+  getTotalPrice(): number {
+    let sum: number = 0;
+    this._taiyakiArr.forEach((taiyaki) => {
+      sum += taiyaki.getPrice();
+    });
+    return sum;
+  }
+
+  public createTaiyaki(kind: taiyakiKind, size: Size): Taiyaki {
     switch (kind) {
       case taiyakiKind.Usually:
         return new UsuTaiyaki(size);

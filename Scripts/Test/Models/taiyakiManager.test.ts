@@ -96,4 +96,26 @@ describe(`taiyakiManagerTest`, () => {
     mg.remove(0);
     expect(mg.taiyakiArr.length).toBe(1);
   });
+
+  test('getTotalPriceTest', () => {
+    let mg = new TaiyakiManager();
+
+    // ０個の場合
+    expect(mg.getTotalPrice()).toBe(0);
+
+    // 通常たい焼きの小を追加
+    let taiyaki: Taiyaki = mg.createTaiyaki(taiyakiKind.Usually, Size.S);
+    mg.add(taiyaki);
+    expect(mg.getTotalPrice()).toBe(100);
+
+    // カスタードの中を追加
+    taiyaki = mg.createTaiyaki(taiyakiKind.Custard, Size.M);
+    mg.add(taiyaki);
+    expect(mg.getTotalPrice()).toBe(300);
+
+    // デラックスの大を追加
+    taiyaki = mg.createTaiyaki(taiyakiKind.Deluxe, Size.L);
+    mg.add(taiyaki);
+    expect(mg.getTotalPrice()).toBe(600);
+  });
 });
