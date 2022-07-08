@@ -1,7 +1,4 @@
 import { TaiyakiManager } from './taiyakiManager.js';
-import taiyakiKind from '../Types/kind.js';
-import Size from '../Types/size.js';
-import { Taiyaki } from './taiyaki.js';
 
 export class Global {
   private static _taiyakiArrMg: TaiyakiManager;

@@ -1,8 +1,8 @@
 import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
 import { Global } from './Global.js';
-import { checkSize } from './selection.js';
-import { checkDxSize } from './selection.js';
+import { checkSize } from './add.js';
+import { checkDxSize } from './add.js';
 
 // 購入ボタンの取得
 const purchaseBtn = document.getElementById('purchase') as HTMLButtonElement;
@@ -15,8 +15,6 @@ const role: string | null = localStorage.getItem('role');
 
 // メニューラジオボタンの取得
 const menuBtns: NodeListOf<HTMLElement> = document.getElementsByName('kind');
-
-for (let i = 0; i < menuBtns.length; i++) {}
 const usuBtn = menuBtns[0] as HTMLInputElement;
 const cusBtn = menuBtns[1] as HTMLInputElement;
 const dxBtn = menuBtns[2] as HTMLInputElement;
@@ -27,10 +25,11 @@ const lBtn = sizeBtns[0] as HTMLInputElement;
 const mBtn = sizeBtns[1] as HTMLInputElement;
 const sBtn = sizeBtns[2] as HTMLInputElement;
 
+// 編集処理
 if (role && role === 'edit') {
   Global.getLocalStorage();
   settingRadioBtn();
-  // 購入ボタンの処理
+  // 購入ボタン
   purchaseBtn.addEventListener('click', () => {
     checkDxSize();
     const size: Size | undefined = checkSize();
@@ -44,6 +43,7 @@ if (role && role === 'edit') {
   });
 }
 
+// ラジオボタンの初期値と有効無効の判定
 function settingRadioBtn(): void {
   menuDiv.classList.add('disabled');
   usuBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Usually;
