@@ -31,6 +31,7 @@ if (role && role === 'add') {
   // 購入ボタンの処理
   let taiyaki: Taiyaki;
   purchaseBtn.addEventListener('click', () => {
+    checkDxSize();
     const size: Size | undefined = checkSize();
     if (size !== undefined) {
       if (usuBtn.checked) {
@@ -57,6 +58,12 @@ export function checkSize(): Size | undefined {
   if (lBtn.checked) return Size.L;
   if (mBtn.checked) return Size.M;
   if (sBtn.checked) return Size.S;
+}
+
+export function checkDxSize(): void {
+  if (dxBtn.checked && !lBtn.checked) {
+    alert(`デラックスたい焼きは、'大'しか選択できません。`);
+  }
 }
 
 function addLocalStorage(taiyaki: Taiyaki): void {

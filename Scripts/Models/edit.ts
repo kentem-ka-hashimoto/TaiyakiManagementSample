@@ -2,7 +2,7 @@ import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
 import { Global } from './Global.js';
 import { checkSize } from './selection.js';
-import { Taiyaki } from './taiyaki.js';
+import { checkDxSize } from './selection.js';
 
 // 購入ボタンの取得
 const purchaseBtn = document.getElementById('purchase') as HTMLButtonElement;
@@ -32,6 +32,7 @@ if (role && role === 'edit') {
   settingRadioBtn();
   // 購入ボタンの処理
   purchaseBtn.addEventListener('click', () => {
+    checkDxSize();
     const size: Size | undefined = checkSize();
     if (size !== undefined) {
       if (size !== Global.taiyakiArrMg.taiyakiArr[index].size) {
