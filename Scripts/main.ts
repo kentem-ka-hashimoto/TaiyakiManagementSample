@@ -1,5 +1,4 @@
 import { Global } from './Models/Global.js';
-import taiyakiKind from './Types/kind.js';
 import Size from './Types/size.js';
 
 // tbodyの取得
@@ -21,6 +20,19 @@ let checks: NodeListOf<HTMLInputElement>;
 window.onload = function () {
   createListView();
   setTotalPrice();
+  // チェックボックスの設定(複数選択させない)
+  checks = document.querySelectorAll('input');
+  checks.forEach((check) => {
+    check.addEventListener('change', () => {
+      if (check.checked) {
+        checks.forEach((check) => {
+          check.checked = false;
+        });
+        check.checked = true;
+      }
+      disabledCheck();
+    });
+  });
   disabledCheck();
 };
 
@@ -32,7 +44,6 @@ addBtn.addEventListener('click', () => {
 
 // 削除ボタンの処理
 deleteBtn.addEventListener('click', () => {
-  checks = document.querySelectorAll('input');
   for (let i = checks.length - 1; i >= 0; i--) {
     if (checks[i].checked) {
       Global.taiyakiArrMg.remove(i);
@@ -44,7 +55,6 @@ deleteBtn.addEventListener('click', () => {
 
 // 編集ボタンの処理
 editBtn.addEventListener('click', () => {
-  checks = document.querySelectorAll('input');
   checks.forEach((check, index) => {
     if (check.checked) localStorage.setItem('index', `${index}`);
   });
@@ -82,9 +92,7 @@ function createListView(): void {
     // チェックボックス
     const checkBox: HTMLInputElement = document.createElement('input');
     checkBox.type = 'checkbox';
-    checkBox.addEventListener('change', () => {
-      disabledCheck();
-    });
+    checkBox.name = 'check';
     const tdOfCheck: HTMLTableCellElement = document.createElement('td');
     tdOfCheck.id = 'check';
     tdOfCheck.appendChild(checkBox);
@@ -117,10 +125,9 @@ function createListView(): void {
 // 削除ボタンと編集ボタンの有効判定
 function disabledCheck() {
   let checkCount: number = 0;
-  checks = document.querySelectorAll('input');
   checks.forEach((check) => {
     if (check.checked) checkCount++;
   });
-  deleteBtn.disabled = 1 > checkCount;
+  deleteBtn.disabled = 1 !== checkCount;
   editBtn.disabled = 1 !== checkCount;
 }
