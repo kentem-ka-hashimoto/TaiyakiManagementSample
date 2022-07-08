@@ -58,10 +58,14 @@ function createListView(): void {
     const tdOfPrice: HTMLTableCellElement = document.createElement('td');
     tdOfPrice.textContent = taiyaki.getPrice().toString();
 
-    tbody?.appendChild(tdOfCheck);
-    tbody?.appendChild(tdOfKind);
-    tbody?.appendChild(tdOfContent);
-    tbody?.appendChild(tdOfSize);
-    tbody?.appendChild(tdOfPrice);
+    const tr: HTMLTableRowElement = document.createElement('tr');
+
+    tr.appendChild(tdOfCheck);
+    tr.appendChild(tdOfKind);
+    tr.appendChild(tdOfContent);
+    tr.appendChild(tdOfSize);
+    tr.appendChild(tdOfPrice);
+
+    tbody?.appendChild(tr);
   });
 }

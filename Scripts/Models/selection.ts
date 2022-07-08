@@ -36,8 +36,7 @@ purchaseBtn.addEventListener('click', () => {
       taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Deluxe, size);
     }
   }
-  Global.taiyakiArrMg.add(taiyaki);
-  localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+  addLocalStorage(taiyaki);
   window.location.href = 'main.html';
 });
 
@@ -52,4 +51,8 @@ function checkSize(): Size | undefined {
   if (sBtn) return Size.S;
 }
 
-function addLocalStorage(): void {}
+function addLocalStorage(taiyaki: Taiyaki): void {
+  Global.getLocalStorage();
+  Global.taiyakiArrMg.taiyakiArr.push(taiyaki);
+  localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+}
