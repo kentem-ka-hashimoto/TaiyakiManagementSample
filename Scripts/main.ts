@@ -4,18 +4,33 @@ import Size from './Types/size.js';
 
 // tbodyの取得
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');
-// 終了ボタンの取得
-const endBtn = document.getElementById('close') as HTMLButtonElement;
 // 追加ボタンの取得
 const addBtn = document.getElementById('add') as HTMLButtonElement;
+// 削除ボタンの取得
+const deleteBtn = document.getElementById('delete') as HTMLButtonElement;
 // 編集ボタンの取得
 const editBtn = document.getElementById('edit') as HTMLButtonElement;
+// 終了ボタンの取得
+const endBtn = document.getElementById('close') as HTMLButtonElement;
+// チェックボックスの取得
+let checks: NodeListOf<HTMLInputElement>;
 
 createListView();
-
 // 追加ボタンの処理
 addBtn.addEventListener('click', () => {
   window.location.href = 'selection.html';
+});
+
+// 削除ボタンの処理
+deleteBtn.addEventListener('click', () => {
+  checks = document.querySelectorAll('input');
+  for (let i = checks.length - 1; i >= 0; i--) {
+    if (checks[i].checked) {
+      Global.taiyakiArrMg.remove(i);
+      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+    }
+  }
+  location.reload();
 });
 
 // 編集ボタンの処理
