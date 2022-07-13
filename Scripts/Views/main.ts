@@ -1,4 +1,4 @@
-import { Global } from '../Models/global';
+import { Global } from '../Models/global.js';
 import taiyakiSize from '../Types/size.js';
 
 // アラートメッセージ
