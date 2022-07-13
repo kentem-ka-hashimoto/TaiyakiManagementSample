@@ -16,6 +16,7 @@ const menuDiv = document.getElementById('menu') as HTMLDivElement;
 const index = Number(localStorage.getItem('index'));
 // クエリパラメータの取得
 const url = new URL(window.location.href);
+const isEditMode: boolean = url.searchParams.get('mode') === 'edit';
 
 // メニューラジオボタンの取得
 const menuBtns: NodeListOf<HTMLElement> = document.getElementsByName('kind');
@@ -30,7 +31,7 @@ const mBtn = sizeBtns[1] as HTMLInputElement;
 const sBtn = sizeBtns[2] as HTMLInputElement;
 
 // 追加か編集かの判定
-if (url.searchParams.get('mode') === 'edit') {
+if (isEditMode) {
   Global.getLocalStorage();
   setRadioBtnDisabled();
   // 購入ボタン
@@ -44,14 +45,14 @@ if (url.searchParams.get('mode') === 'edit') {
         }
       }
       localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
-      window.location.href = 'main.html';
+      RedirectMainPage();
     } catch {
       alert(ILLEGAL_CHOICE);
     }
   });
 }
 
-if (url.searchParams.get('mode') === 'add') {
+if (!isEditMode) {
   // 追加処理
   usuBtn.checked = true;
   lBtn.checked = true;
@@ -71,7 +72,7 @@ if (url.searchParams.get('mode') === 'add') {
         }
       }
       addLocalStorage(taiyaki);
-      window.location.href = 'main.html';
+      RedirectMainPage();
     } catch {
       alert(ILLEGAL_CHOICE);
     }
@@ -80,7 +81,7 @@ if (url.searchParams.get('mode') === 'add') {
 
 // キャンセルボタンの処理
 cancelBtn.addEventListener('click', () => {
-  window.location.href = 'main.html';
+  RedirectMainPage();
 });
 
 // サイズのチェックを行う関数
@@ -111,4 +112,9 @@ function setRadioBtnDisabled(): void {
   usuBtn.disabled = true;
   cusBtn.disabled = true;
   dxBtn.disabled = true;
+}
+
+// メイン画面遷移
+function RedirectMainPage(): void {
+  window.location.href = 'main.html';
 }
