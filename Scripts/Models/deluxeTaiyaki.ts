@@ -13,30 +13,30 @@ export class DeluxeTaiyaki implements Taiyaki {
     }
   }
 
-  get kind() {
+  public get kind() {
     return this._kind;
   }
 
-  get name() {
+  public get name() {
     return this._name;
   }
 
-  get content() {
+  public get content() {
     return this._content;
   }
 
-  get size() {
+  public get size() {
     return this._size;
   }
 
-  set size(value: Size) {
+  public set size(value: Size) {
     if (this.checkDxSize(value)) {
       throw new Error(this.ABNORMAL_VALUE_ERROR);
     }
     this._size = value;
   }
 
-  getPrice(): number {
+  public getPrice(): number {
     return 300;
   }
 

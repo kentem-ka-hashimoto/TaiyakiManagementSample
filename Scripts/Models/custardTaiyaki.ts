@@ -8,27 +8,27 @@ export class CustardTaiyaki implements Taiyaki {
   private _content: string = 'カスタード';
   constructor(private _size: Size) {}
 
-  get kind() {
+  public get kind() {
     return this._kind;
   }
 
-  get name() {
+  public get name() {
     return this._name;
   }
 
-  get content() {
+  public get content() {
     return this._content;
   }
 
-  get size() {
+  public get size() {
     return this._size;
   }
 
-  set size(value: Size) {
+  public set size(value: Size) {
     this._size = value;
   }
 
-  getPrice(): number {
+  public getPrice(): number {
     switch (this._size) {
       case Size.S:
         return 150;

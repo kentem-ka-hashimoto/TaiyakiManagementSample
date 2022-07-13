@@ -11,6 +11,6 @@ export interface Taiyaki {
   get content(): string;
   // 種類
   get kind(): taiyakiKind;
-// 価格の判定
+  // 価格の判定
   getPrice(): number;
 }
