@@ -7,6 +7,10 @@ import { Taiyaki } from './taiyaki.js';
 const purchaseBtn = document.getElementById('purchase') as HTMLButtonElement;
 // キャンセルボタンの取得
 const cancelBtn = document.getElementById('cancel') as HTMLButtonElement;
+// メニューdivの取得
+const menuDiv = document.getElementById('menu') as HTMLDivElement;
+// indexの取得
+const index = Number(localStorage.getItem('index'));
 // 追加か編集か
 const role: string | null = localStorage.getItem('role');
 
@@ -22,8 +26,26 @@ const lBtn = sizeBtns[0] as HTMLInputElement;
 const mBtn = sizeBtns[1] as HTMLInputElement;
 const sBtn = sizeBtns[2] as HTMLInputElement;
 
-// 追加処理
+// 追加か編集かの判定
+if (role && role === 'edit') {
+  Global.getLocalStorage();
+  settingRadioBtn();
+  // 購入ボタン
+  purchaseBtn.addEventListener('click', () => {
+    checkDxSize();
+    const size: Size | undefined = checkSize();
+    if (size !== undefined) {
+      if (size !== Global.taiyakiArrMg.taiyakiArr[index].size) {
+        Global.taiyakiArrMg.taiyakiArr[index].size = size;
+      }
+    }
+    localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+    window.location.href = 'main.html';
+  });
+}
+
 if (role && role === 'add') {
+  // 追加処理
   usuBtn.checked = true;
   lBtn.checked = true;
   // 購入ボタン
@@ -65,4 +87,18 @@ function addLocalStorage(taiyaki: Taiyaki): void {
   Global.getLocalStorage();
   Global.taiyakiArrMg.add(taiyaki);
   localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+}
+
+// ラジオボタンの初期値と有効無効の判定
+function settingRadioBtn(): void {
+  menuDiv.classList.add('disabled');
+  usuBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Usually;
+  cusBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Custard;
+  dxBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Deluxe;
+  lBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].size === Size.L;
+  mBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].size === Size.M;
+  sBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].size === Size.S;
+  usuBtn.disabled = true;
+  cusBtn.disabled = true;
+  dxBtn.disabled = true;
 }
