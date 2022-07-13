@@ -9,7 +9,7 @@ describe('dxTaiyakiTest', () => {
     // 種類の確認
     expect(taiyaki.kind).toBe(taiyakiKind.Deluxe);
     // 商品名の確認
-    expect(taiyaki.name).toBe('デラックスたい焼き');
+    expect(taiyaki.kind).toBe('デラックスたい焼き');
     // 中身の確認
     expect(taiyaki.content).toBe('生クリームとカスタード');
     // サイズの確認

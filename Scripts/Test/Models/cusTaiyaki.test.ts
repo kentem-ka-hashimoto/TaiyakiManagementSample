@@ -9,7 +9,7 @@ describe('cusTaiyakiTest', () => {
     // 種類の確認
     expect(taiyaki.kind).toBe(taiyakiKind.Custard);
     // 商品名の確認
-    expect(taiyaki.name).toBe('カスタード');
+    expect(taiyaki.kind).toBe('カスタード');
     // 中身の確認
     expect(taiyaki.content).toBe('カスタード');
     // サイズの確認(S)

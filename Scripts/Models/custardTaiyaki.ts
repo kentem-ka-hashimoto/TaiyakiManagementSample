@@ -4,16 +4,11 @@ import taiyakiSize from '../Types/taiyakiSize.js';
 
 export class CustardTaiyaki implements Taiyaki {
   private _kind: taiyakiKind = taiyakiKind.Custard;
-  private _name: string = 'カスタード';
   private _content: string = 'カスタード';
   constructor(private _size: taiyakiSize) {}
 
   public get kind() {
     return this._kind;
-  }
-
-  public get name() {
-    return this._name;
   }
 
   public get content() {

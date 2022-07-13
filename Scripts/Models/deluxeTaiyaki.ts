@@ -5,7 +5,6 @@ import taiyakiSize from '../Types/taiyakiSize.js';
 export class DeluxeTaiyaki implements Taiyaki {
   private readonly ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';
   private _kind: taiyakiKind = taiyakiKind.Deluxe;
-  private _name: string = 'デラックスたい焼き';
   private _content: string = '生クリームとカスタード';
   constructor(private _size: taiyakiSize) {
     if (this.checkDxSize(this._size)) {
@@ -15,10 +14,6 @@ export class DeluxeTaiyaki implements Taiyaki {
 
   public get kind() {
     return this._kind;
-  }
-
-  public get name() {
-    return this._name;
   }
 
   public get content() {

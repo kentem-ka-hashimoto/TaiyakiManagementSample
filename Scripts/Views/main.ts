@@ -99,7 +99,7 @@ function createListView(): void {
     tdCheck.appendChild(checkBox);
     // 種類
     const tdKind: HTMLTableCellElement = document.createElement('td');
-    tdKind.textContent = taiyaki.name;
+    tdKind.textContent = taiyaki.kind;
     // 中身(具材)
     const tdContent: HTMLTableCellElement = document.createElement('td');
     tdContent.textContent = taiyaki.content;

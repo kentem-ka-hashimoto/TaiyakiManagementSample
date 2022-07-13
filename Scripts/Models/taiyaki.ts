@@ -5,8 +5,6 @@ export interface Taiyaki {
   // サイズ(取得と更新可)
   get size(): taiyakiSize;
   set size(value: taiyakiSize);
-  // 商品名
-  get name(): string;
   // 中身
   get content(): string;
   // 種類

@@ -9,7 +9,7 @@ describe('usuTaiyakiTest', () => {
     // 種類の確認
     expect(taiyaki.kind).toBe(taiyakiKind.Usually);
     // 商品名の確認
-    expect(taiyaki.name).toBe('通常たい焼き');
+    expect(taiyaki.kind).toBe('通常たい焼き');
     // 中身の確認
     expect(taiyaki.content).toBe('あんこ');
     // サイズの確認(S)
