@@ -1,4 +1,4 @@
-import { CustardTaiyaki } from '../../Models/cusTaiyaki.js';
+import { CustardTaiyaki } from '../../Models/custardTaiyaki';
 import taiyakiKind from '../../Types/kind.js';
 import Size from '../../Types/size.js';
 

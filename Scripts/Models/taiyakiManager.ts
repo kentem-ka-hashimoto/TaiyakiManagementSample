@@ -1,9 +1,9 @@
 import { Taiyaki } from './taiyaki';
 import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
-import { NormalTaiyaki } from './usuTaiyaki.js';
-import { CustardTaiyaki } from './cusTaiyaki.js';
-import { DeluxeTaiyaki } from './dxTaiyaki.js';
+import { NormalTaiyaki } from './normalTaiyaki';
+import { CustardTaiyaki } from './custardTaiyaki';
+import { DeluxeTaiyaki } from './deluxeTaiyaki';
 
 export class TaiyakiManager {
   private _taiyakiArr: Taiyaki[] = [];

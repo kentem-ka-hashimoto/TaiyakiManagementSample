@@ -1,4 +1,4 @@
-import { DeluxeTaiyaki } from '../../Models/dxTaiyaki.js';
+import { DeluxeTaiyaki } from '../../Models/deluxeTaiyaki';
 import taiyakiKind from '../../Types/kind.js';
 import Size from '../../Types/size.js';
 
