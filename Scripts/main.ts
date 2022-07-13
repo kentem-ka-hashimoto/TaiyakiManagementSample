@@ -91,31 +91,31 @@ function createListView(): void {
     const checkBox: HTMLInputElement = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.name = 'check';
-    const tdOfCheck: HTMLTableCellElement = document.createElement('td');
-    tdOfCheck.id = 'check';
-    tdOfCheck.appendChild(checkBox);
+    const tdCheck: HTMLTableCellElement = document.createElement('td');
+    tdCheck.id = 'check';
+    tdCheck.appendChild(checkBox);
     // 種類
-    const tdOfKind: HTMLTableCellElement = document.createElement('td');
-    tdOfKind.textContent = taiyaki.name;
+    const tdKind: HTMLTableCellElement = document.createElement('td');
+    tdKind.textContent = taiyaki.name;
     // 中身(具材)
-    const tdOfContent: HTMLTableCellElement = document.createElement('td');
-    tdOfContent.textContent = taiyaki.content;
+    const tdContent: HTMLTableCellElement = document.createElement('td');
+    tdContent.textContent = taiyaki.content;
     // サイズ
-    const tdOfSize: HTMLTableCellElement = document.createElement('td');
-    if (taiyaki.size === Size.S) tdOfSize.textContent = '小';
-    if (taiyaki.size === Size.M) tdOfSize.textContent = '中';
-    if (taiyaki.size === Size.L) tdOfSize.textContent = '大';
+    const tdSize: HTMLTableCellElement = document.createElement('td');
+    if (taiyaki.size === Size.S) tdSize.textContent = '小';
+    if (taiyaki.size === Size.M) tdSize.textContent = '中';
+    if (taiyaki.size === Size.L) tdSize.textContent = '大';
     // 価格
-    const tdOfPrice: HTMLTableCellElement = document.createElement('td');
-    tdOfPrice.textContent = `${taiyaki.getPrice()}`;
+    const tdPrice: HTMLTableCellElement = document.createElement('td');
+    tdPrice.textContent = `${taiyaki.getPrice()}`;
 
     // 追加
     const tr: HTMLTableRowElement = document.createElement('tr');
-    tr.appendChild(tdOfCheck);
-    tr.appendChild(tdOfKind);
-    tr.appendChild(tdOfContent);
-    tr.appendChild(tdOfSize);
-    tr.appendChild(tdOfPrice);
+    tr.appendChild(tdCheck);
+    tr.appendChild(tdKind);
+    tr.appendChild(tdContent);
+    tr.appendChild(tdSize);
+    tr.appendChild(tdPrice);
     tbody?.appendChild(tr);
   });
 }
