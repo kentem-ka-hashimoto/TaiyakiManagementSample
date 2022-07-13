@@ -48,8 +48,8 @@ addBtn.addEventListener('click', () => {
 deleteBtn.addEventListener('click', () => {
   for (let i = checks.length - 1; i >= 0; i--) {
     if (checks[i].checked) {
-      Global.taiyakiArrMg.remove(i);
-      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+      Global.taiyakiMg.remove(i);
+      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiMg.taiyakiArr));
     }
   }
   location.reload();
@@ -74,7 +74,7 @@ endBtn.addEventListener('click', () => {
 // 合計金額の取得
 function setTotalPrice(): void {
   if (totalPrice) {
-    totalPrice.textContent = `合計金額 : ${Global.taiyakiArrMg.getTotalPrice()}円`;
+    totalPrice.textContent = `合計金額 : ${Global.taiyakiMg.getTotalPrice()}円`;
   }
 }
 
@@ -89,7 +89,7 @@ function deleteList() {
 function createListView(): void {
   deleteList();
   Global.getLocalStorage();
-  Global.taiyakiArrMg.taiyakiArr.forEach((taiyaki) => {
+  Global.taiyakiMg.taiyakiArr.forEach((taiyaki) => {
     // チェックボックス
     const checkBox: HTMLInputElement = document.createElement('input');
     checkBox.type = 'checkbox';

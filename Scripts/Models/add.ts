@@ -39,11 +39,11 @@ if (url.searchParams.get('mode') === 'edit') {
     // デラックスのサイズ確認とアラート表示
     try {
       if (size !== undefined) {
-        if (size !== Global.taiyakiArrMg.taiyakiArr[index].size) {
-          Global.taiyakiArrMg.taiyakiArr[index].size = size;
+        if (size !== Global.taiyakiMg.taiyakiArr[index].size) {
+          Global.taiyakiMg.taiyakiArr[index].size = size;
         }
       }
-      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiMg.taiyakiArr));
       window.location.href = 'main.html';
     } catch {
       alert(ILLEGAL_CHOICE);
@@ -63,11 +63,11 @@ if (url.searchParams.get('mode') === 'add') {
     try {
       if (size !== undefined) {
         if (usuBtn.checked) {
-          taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Usually, size);
+          taiyaki = Global.taiyakiMg.createTaiyaki(taiyakiKind.Usually, size);
         } else if (cusBtn.checked) {
-          taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Custard, size);
+          taiyaki = Global.taiyakiMg.createTaiyaki(taiyakiKind.Custard, size);
         } else {
-          taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Deluxe, size);
+          taiyaki = Global.taiyakiMg.createTaiyaki(taiyakiKind.Deluxe, size);
         }
       }
       addLocalStorage(taiyaki);
@@ -93,15 +93,15 @@ export function checkSize(): Size | undefined {
 // ローカルストレージへの保存
 function addLocalStorage(taiyaki: Taiyaki): void {
   Global.getLocalStorage();
-  Global.taiyakiArrMg.add(taiyaki);
-  localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+  Global.taiyakiMg.add(taiyaki);
+  localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiMg.taiyakiArr));
 }
 
 // ラジオボタンの初期値と有効無効の判定
 function setRadioBtnDisabled(): void {
   menuDiv.classList.add('disabled');
-  const kind: taiyakiKind = Global.taiyakiArrMg.taiyakiArr[index].kind;
-  const size: Size = Global.taiyakiArrMg.taiyakiArr[index].size;
+  const kind: taiyakiKind = Global.taiyakiMg.taiyakiArr[index].kind;
+  const size: Size = Global.taiyakiMg.taiyakiArr[index].size;
   usuBtn.checked = kind === taiyakiKind.Usually;
   cusBtn.checked = kind === taiyakiKind.Custard;
   dxBtn.checked = kind === taiyakiKind.Deluxe;

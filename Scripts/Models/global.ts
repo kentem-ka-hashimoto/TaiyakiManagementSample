@@ -1,13 +1,13 @@
 import { TaiyakiManager } from './taiyakiManager.js';
 
 export class Global {
-  private static _taiyakiArrMg: TaiyakiManager;
+  private static _taiyakiMg: TaiyakiManager;
 
-  public static get taiyakiArrMg() {
-    if (!this._taiyakiArrMg) {
-      this._taiyakiArrMg = new TaiyakiManager();
+  public static get taiyakiMg() {
+    if (!this._taiyakiMg) {
+      this._taiyakiMg = new TaiyakiManager();
     }
-    return this._taiyakiArrMg;
+    return this._taiyakiMg;
   }
 
   public static getLocalStorage(): void {
@@ -15,8 +15,8 @@ export class Global {
     if (items) {
       const taiyakiArr: string[] = JSON.parse(items);
       taiyakiArr.forEach((taiyaki: any) => {
-        const instance = Global.taiyakiArrMg.createTaiyaki(taiyaki._kind, taiyaki._size);
-        Global.taiyakiArrMg.add(instance);
+        const instance = Global.taiyakiMg.createTaiyaki(taiyaki._kind, taiyaki._size);
+        Global.taiyakiMg.add(instance);
       });
     }
   }
