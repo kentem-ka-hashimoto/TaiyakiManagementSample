@@ -2,7 +2,7 @@ import { Taiyaki } from './taiyaki';
 import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
 
-export class UsuTaiyaki implements Taiyaki {
+export class NormalTaiyaki implements Taiyaki {
   private _kind: taiyakiKind = taiyakiKind.Usually;
   private _name: string = '通常たい焼き';
   private _content: string = 'あんこ';

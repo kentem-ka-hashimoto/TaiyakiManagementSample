@@ -2,7 +2,7 @@ import { Taiyaki } from '../Models/taiyaki';
 import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
 
-export class CusTaiyaki implements Taiyaki {
+export class CustardTaiyaki implements Taiyaki {
   private _kind: taiyakiKind = taiyakiKind.Custard;
   private _name: string = 'カスタード';
   private _content: string = 'カスタード';

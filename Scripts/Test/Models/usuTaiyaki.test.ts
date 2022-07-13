@@ -1,10 +1,10 @@
-import { UsuTaiyaki } from '../../Models/usuTaiyaki.js';
+import { NormalTaiyaki } from '../../Models/usuTaiyaki.js';
 import taiyakiKind from '../../Types/kind.js';
 import Size from '../../Types/size.js';
 
 describe('usuTaiyakiTest', () => {
   test('propertyTest', () => {
-    let taiyaki = new UsuTaiyaki(Size.S);
+    let taiyaki = new NormalTaiyaki(Size.S);
 
     // 種類の確認
     expect(taiyaki.kind).toBe(taiyakiKind.Usually);
@@ -15,15 +15,15 @@ describe('usuTaiyakiTest', () => {
     // サイズの確認(S)
     expect(taiyaki.size).toBe(Size.S);
     // サイズの確認(M)
-    taiyaki = new UsuTaiyaki(Size.M);
+    taiyaki = new NormalTaiyaki(Size.M);
     expect(taiyaki.size).toBe(Size.M);
     // サイズの確認(L)
-    taiyaki = new UsuTaiyaki(Size.L);
+    taiyaki = new NormalTaiyaki(Size.L);
     expect(taiyaki.size).toBe(Size.L);
   });
 
   test('setSizeTest', () => {
-    let taiyaki = new UsuTaiyaki(Size.S);
+    let taiyaki = new NormalTaiyaki(Size.S);
 
     // サイズの確認(変更前)
     expect(taiyaki.size).toBe(Size.S);
@@ -36,7 +36,7 @@ describe('usuTaiyakiTest', () => {
   });
 
   test('getPriceTest', () => {
-    let taiyaki = new UsuTaiyaki(Size.S);
+    let taiyaki = new NormalTaiyaki(Size.S);
     // Sサイズ
     expect(taiyaki.getPrice()).toBe(100);
     // Mサイズ

@@ -2,7 +2,7 @@ import { Taiyaki } from './taiyaki';
 import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
 
-export class DxTaiyaki implements Taiyaki {
+export class DeluxeTaiyaki implements Taiyaki {
   private readonly ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';
   private _kind: taiyakiKind = taiyakiKind.Deluxe;
   private _name: string = 'デラックスたい焼き';

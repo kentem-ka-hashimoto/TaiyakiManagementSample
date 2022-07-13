@@ -1,9 +1,9 @@
 import { Taiyaki } from './taiyaki';
 import taiyakiKind from '../Types/kind.js';
 import Size from '../Types/size.js';
-import { UsuTaiyaki } from './usuTaiyaki.js';
-import { CusTaiyaki } from './cusTaiyaki.js';
-import { DxTaiyaki } from './dxTaiyaki.js';
+import { NormalTaiyaki } from './usuTaiyaki.js';
+import { CustardTaiyaki } from './cusTaiyaki.js';
+import { DeluxeTaiyaki } from './dxTaiyaki.js';
 
 export class TaiyakiManager {
   private _taiyakiArr: Taiyaki[] = [];
@@ -32,11 +32,11 @@ export class TaiyakiManager {
   public createTaiyaki(kind: taiyakiKind, size: Size): Taiyaki {
     switch (kind) {
       case taiyakiKind.Usually:
-        return new UsuTaiyaki(size);
+        return new NormalTaiyaki(size);
       case taiyakiKind.Custard:
-        return new CusTaiyaki(size);
+        return new CustardTaiyaki(size);
       case taiyakiKind.Deluxe:
-        return new DxTaiyaki(size);
+        return new DeluxeTaiyaki(size);
     }
   }
 }
