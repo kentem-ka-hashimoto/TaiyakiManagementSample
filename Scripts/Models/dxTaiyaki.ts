@@ -7,7 +7,7 @@ export class DxTaiyaki implements Taiyaki {
   private _name: string = 'デラックスたい焼き';
   private _content: string = '生クリームとカスタード';
   constructor(private _size: Size) {
-    if (this._size === Size.S || this._size === Size.M) {
+    if (this.checkDxSize(this._size)) {
       throw new Error('The value is abnormal');
     }
   }
@@ -29,7 +29,7 @@ export class DxTaiyaki implements Taiyaki {
   }
 
   set size(value: Size) {
-    if (value === Size.S || value === Size.M) {
+    if (this.checkDxSize(value)) {
       throw new Error('The value is abnormal');
     }
     this._size = value;
@@ -37,5 +37,9 @@ export class DxTaiyaki implements Taiyaki {
 
   getPrice(): number {
     return 300;
+  }
+
+  private checkDxSize(target: Size): boolean {
+    return target !== Size.L;
   }
 }

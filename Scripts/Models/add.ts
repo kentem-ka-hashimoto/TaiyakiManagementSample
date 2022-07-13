@@ -29,18 +29,22 @@ const sBtn = sizeBtns[2] as HTMLInputElement;
 // 追加か編集かの判定
 if (role && role === 'edit') {
   Global.getLocalStorage();
-  settingRadioBtn();
+  setRadioBtnDisabled();
   // 購入ボタン
   purchaseBtn.addEventListener('click', () => {
-    checkDxSize();
     const size: Size | undefined = checkSize();
-    if (size !== undefined) {
-      if (size !== Global.taiyakiArrMg.taiyakiArr[index].size) {
-        Global.taiyakiArrMg.taiyakiArr[index].size = size;
+    // デラックスのサイズ確認とアラート表示
+    try {
+      if (size !== undefined) {
+        if (size !== Global.taiyakiArrMg.taiyakiArr[index].size) {
+          Global.taiyakiArrMg.taiyakiArr[index].size = size;
+        }
       }
+      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
+      window.location.href = 'main.html';
+    } catch {
+      alert(`デラックスたい焼きは、'大'しか選択できません。`);
     }
-    localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
-    window.location.href = 'main.html';
   });
 }
 
@@ -51,15 +55,19 @@ if (role && role === 'add') {
   // 購入ボタン
   let taiyaki: Taiyaki;
   purchaseBtn.addEventListener('click', () => {
-    checkDxSize();
     const size: Size | undefined = checkSize();
-    if (size !== undefined) {
-      if (usuBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Usually, size);
-      if (cusBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Custard, size);
-      if (dxBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Deluxe, size);
+    // デラックスのサイズ確認とアラート表示
+    try {
+      if (size !== undefined) {
+        if (usuBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Usually, size);
+        if (cusBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Custard, size);
+        if (dxBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Deluxe, size);
+      }
+      addLocalStorage(taiyaki);
+      window.location.href = 'main.html';
+    } catch {
+      alert(`デラックスたい焼きは、'大'しか選択できません。`);
     }
-    addLocalStorage(taiyaki);
-    window.location.href = 'main.html';
   });
 }
 
@@ -75,13 +83,6 @@ export function checkSize(): Size | undefined {
   if (sBtn.checked) return Size.S;
 }
 
-// デラックスのサイズ確認とアラート表示
-export function checkDxSize(): void {
-  if (dxBtn.checked && !lBtn.checked) {
-    alert(`デラックスたい焼きは、'大'しか選択できません。`);
-  }
-}
-
 // ローカルストレージへの保存
 function addLocalStorage(taiyaki: Taiyaki): void {
   Global.getLocalStorage();
@@ -90,14 +91,16 @@ function addLocalStorage(taiyaki: Taiyaki): void {
 }
 
 // ラジオボタンの初期値と有効無効の判定
-function settingRadioBtn(): void {
+function setRadioBtnDisabled(): void {
   menuDiv.classList.add('disabled');
-  usuBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Usually;
-  cusBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Custard;
-  dxBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].kind === taiyakiKind.Deluxe;
-  lBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].size === Size.L;
-  mBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].size === Size.M;
-  sBtn.checked = Global.taiyakiArrMg.taiyakiArr[index].size === Size.S;
+  const kind: taiyakiKind = Global.taiyakiArrMg.taiyakiArr[index].kind;
+  const size: Size = Global.taiyakiArrMg.taiyakiArr[index].size;
+  usuBtn.checked = kind === taiyakiKind.Usually;
+  cusBtn.checked = kind === taiyakiKind.Custard;
+  dxBtn.checked = kind === taiyakiKind.Deluxe;
+  lBtn.checked = size === Size.L;
+  mBtn.checked = size === Size.M;
+  sBtn.checked = size === Size.S;
   usuBtn.disabled = true;
   cusBtn.disabled = true;
   dxBtn.disabled = true;
