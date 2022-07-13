@@ -59,9 +59,13 @@ if (url.searchParams.get('mode') === 'add') {
     // デラックスのサイズ確認とアラート表示
     try {
       if (size !== undefined) {
-        if (usuBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Usually, size);
-        if (cusBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Custard, size);
-        if (dxBtn.checked) taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Deluxe, size);
+        if (usuBtn.checked) {
+          taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Usually, size);
+        } else if (cusBtn.checked) {
+          taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Custard, size);
+        } else {
+          taiyaki = Global.taiyakiArrMg.createTaiyaki(taiyakiKind.Deluxe, size);
+        }
       }
       addLocalStorage(taiyaki);
       window.location.href = 'main.html';
