@@ -11,7 +11,7 @@ export class Global {
   }
 
   public static getLocalStorage(): void {
-    const items: string | null = localStorage.getItem('taiyakiDate');
+    const items: string | null = localStorage.getItem('taiyakiData');
     if (items) {
       const taiyakiArr: string[] = JSON.parse(items);
       taiyakiArr.forEach((taiyaki: any) => {

@@ -43,7 +43,7 @@ if (url.searchParams.get('mode') === 'edit') {
           Global.taiyakiManager.taiyakiArr[index].size = size;
         }
       }
-      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+      localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
       window.location.href = 'main.html';
     } catch {
       alert(ILLEGAL_CHOICE);
@@ -94,7 +94,7 @@ export function checkSize(): taiyakiSize | undefined {
 function addLocalStorage(taiyaki: Taiyaki): void {
   Global.getLocalStorage();
   Global.taiyakiManager.add(taiyaki);
-  localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+  localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
 }
 
 // ラジオボタンの初期値と有効無効の判定

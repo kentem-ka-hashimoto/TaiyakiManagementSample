@@ -49,7 +49,7 @@ deleteBtn.addEventListener('click', () => {
   for (let i = checks.length - 1; i >= 0; i--) {
     if (checks[i].checked) {
       Global.taiyakiManager.remove(i);
-      localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+      localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
     }
   }
   location.reload();
