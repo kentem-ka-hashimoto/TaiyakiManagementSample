@@ -1,7 +1,7 @@
 import taiyakiKind from '../Types/kind.js';
 import taiyakiSize from '../Types/size.js';
-import { Global } from './Global.js';
-import { Taiyaki } from './taiyaki.js';
+import { Global } from '../Models/global.js';
+import { Taiyaki } from '../Models/taiyaki.js';
 
 // アラートメッセージ
 const ILLEGAL_CHOICE: string = `デラックスたい焼きは、'大'しか選択できません。`;

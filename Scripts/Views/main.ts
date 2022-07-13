@@ -1,5 +1,5 @@
-import { Global } from './Models/Global.js';
-import taiyakiSize from './Types/size.js';
+import { Global } from '../Models/global';
+import taiyakiSize from '../Types/size.js';
 
 // アラートメッセージ
 const FAILED_TO_CLOSE: string = '閉じるのに失敗しました。直接このタブを閉じて下さい。';
