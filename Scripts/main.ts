@@ -1,6 +1,9 @@
 import { Global } from './Models/Global.js';
 import Size from './Types/size.js';
 
+// アラートメッセージ
+const FAILED_TO_CLOSE: string = '閉じるのに失敗しました。直接このタブを閉じて下さい。';
+
 // tbodyの取得
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');
 // 合計金額の表示部分の取得
@@ -64,7 +67,7 @@ editBtn.addEventListener('click', () => {
 endBtn.addEventListener('click', () => {
   window.close();
   if (!window.closed) {
-    alert('閉じるのに失敗しました。直接このタブを閉じて下さい。');
+    alert(FAILED_TO_CLOSE);
   }
 });
 

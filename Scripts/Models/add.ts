@@ -3,6 +3,9 @@ import Size from '../Types/size.js';
 import { Global } from './Global.js';
 import { Taiyaki } from './taiyaki.js';
 
+// アラートメッセージ
+const ILLEGAL_CHOICE: string = `デラックスたい焼きは、'大'しか選択できません。`;
+
 // 購入ボタンの取得
 const purchaseBtn = document.getElementById('purchase') as HTMLButtonElement;
 // キャンセルボタンの取得
@@ -43,7 +46,7 @@ if (url.searchParams.get('mode') === 'edit') {
       localStorage.setItem('taiyakiDate', JSON.stringify(Global.taiyakiArrMg.taiyakiArr));
       window.location.href = 'main.html';
     } catch {
-      alert(`デラックスたい焼きは、'大'しか選択できません。`);
+      alert(ILLEGAL_CHOICE);
     }
   });
 }
@@ -70,7 +73,7 @@ if (url.searchParams.get('mode') === 'add') {
       addLocalStorage(taiyaki);
       window.location.href = 'main.html';
     } catch {
-      alert(`デラックスたい焼きは、'大'しか選択できません。`);
+      alert(ILLEGAL_CHOICE);
     }
   });
 }
