@@ -11,8 +11,8 @@ const cancelBtn = document.getElementById('cancel') as HTMLButtonElement;
 const menuDiv = document.getElementById('menu') as HTMLDivElement;
 // indexの取得
 const index = Number(localStorage.getItem('index'));
-// 追加か編集か
-const role: string | null = localStorage.getItem('role');
+// クエリパラメータの取得
+const url = new URL(window.location.href);
 
 // メニューラジオボタンの取得
 const menuBtns: NodeListOf<HTMLElement> = document.getElementsByName('kind');
@@ -27,7 +27,7 @@ const mBtn = sizeBtns[1] as HTMLInputElement;
 const sBtn = sizeBtns[2] as HTMLInputElement;
 
 // 追加か編集かの判定
-if (role && role === 'edit') {
+if (url.searchParams.get('mode') === 'edit') {
   Global.getLocalStorage();
   setRadioBtnDisabled();
   // 購入ボタン
@@ -48,7 +48,7 @@ if (role && role === 'edit') {
   });
 }
 
-if (role && role === 'add') {
+if (url.searchParams.get('mode') === 'add') {
   // 追加処理
   usuBtn.checked = true;
   lBtn.checked = true;

@@ -38,8 +38,7 @@ window.onload = function () {
 
 // 追加ボタンの処理
 addBtn.addEventListener('click', () => {
-  localStorage.setItem('role', 'add');
-  window.location.href = 'Add.html';
+  window.location.href = 'Add.html?mode=add';
 });
 
 // 削除ボタンの処理
@@ -58,8 +57,7 @@ editBtn.addEventListener('click', () => {
   checks.forEach((check, index) => {
     if (check.checked) localStorage.setItem('index', `${index}`);
   });
-  localStorage.setItem('role', 'edit');
-  window.location.href = 'Add.html';
+  window.location.href = 'Add.html?mode=edit';
 });
 
 // 終了ボタンの処理
