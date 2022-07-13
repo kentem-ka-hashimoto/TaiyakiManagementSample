@@ -1,6 +1,6 @@
 import { Taiyaki } from './taiyaki';
-import taiyakiKind from '../Types/kind.js';
-import taiyakiSize from '../Types/size.js';
+import taiyakiKind from '../Types/taiyakiKind.js';
+import taiyakiSize from '../Types/taiyakiSize.js';
 
 export class NormalTaiyaki implements Taiyaki {
   private _kind: taiyakiKind = taiyakiKind.Usually;

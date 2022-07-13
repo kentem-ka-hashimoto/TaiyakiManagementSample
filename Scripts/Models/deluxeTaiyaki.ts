@@ -1,6 +1,6 @@
 import { Taiyaki } from './taiyaki';
-import taiyakiKind from '../Types/kind.js';
-import taiyakiSize from '../Types/size.js';
+import taiyakiKind from '../Types/taiyakiKind.js';
+import taiyakiSize from '../Types/taiyakiSize.js';
 
 export class DeluxeTaiyaki implements Taiyaki {
   private readonly ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';

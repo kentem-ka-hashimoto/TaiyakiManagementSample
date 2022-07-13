@@ -1,5 +1,5 @@
-import taiyakiKind from '../Types/kind.js';
-import taiyakiSize from '../Types/size.js';
+import taiyakiKind from '../Types/taiyakiKind.js';
+import taiyakiSize from '../Types/taiyakiSize.js';
 import { Global } from '../Models/global.js';
 import { Taiyaki } from '../Models/taiyaki.js';
 

@@ -1,6 +1,6 @@
 import { Taiyaki } from './taiyaki';
-import taiyakiKind from '../Types/kind.js';
-import taiyakiSize from '../Types/size.js';
+import taiyakiKind from '../Types/taiyakiKind.js';
+import taiyakiSize from '../Types/taiyakiSize.js';
 import { NormalTaiyaki } from './normalTaiyaki.js';
 import { CustardTaiyaki } from './custardTaiyaki.js';
 import { DeluxeTaiyaki } from './deluxeTaiyaki.js';

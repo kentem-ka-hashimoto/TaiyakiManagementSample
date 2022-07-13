@@ -1,5 +1,5 @@
-import taiyakiKind from '../Types/kind.js';
-import taiyakiSize from '../Types/size.js';
+import taiyakiKind from '../Types/taiyakiKind.js';
+import taiyakiSize from '../Types/taiyakiSize.js';
 
 export interface Taiyaki {
   // サイズ(取得と更新可)

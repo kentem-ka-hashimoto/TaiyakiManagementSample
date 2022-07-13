@@ -1,6 +1,6 @@
 import { DeluxeTaiyaki } from '../../Models/deluxeTaiyaki';
-import taiyakiKind from '../../Types/kind.js';
-import taiyakiSize from '../../Types/size.js';
+import taiyakiKind from '../../Types/taiyakiKind.js';
+import taiyakiSize from '../../Types/taiyakiSize.js';
 
 describe('dxTaiyakiTest', () => {
   test('propertyTest', () => {

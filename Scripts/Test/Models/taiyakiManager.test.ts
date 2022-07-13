@@ -1,7 +1,7 @@
 import { Taiyaki } from '../../Models/taiyaki.js';
 import { TaiyakiManager } from '../../Models/taiyakiManager.js';
-import taiyakiKind from '../../Types/kind.js';
-import taiyakiSize from '../../Types/size.js';
+import taiyakiKind from '../../Types/taiyakiKind.js';
+import taiyakiSize from '../../Types/taiyakiSize.js';
 
 describe(`taiyakiManagerTest`, () => {
   test('propertyTest', () => {
