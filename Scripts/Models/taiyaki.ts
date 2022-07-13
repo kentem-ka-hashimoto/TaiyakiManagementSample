@@ -1,10 +1,10 @@
 import taiyakiKind from '../Types/kind.js';
-import Size from '../Types/size.js';
+import taiyakiSize from '../Types/size.js';
 
 export interface Taiyaki {
   // サイズ(取得と更新可)
-  get size(): Size;
-  set size(value: Size);
+  get size(): taiyakiSize;
+  set size(value: taiyakiSize);
   // 商品名
   get name(): string;
   // 中身

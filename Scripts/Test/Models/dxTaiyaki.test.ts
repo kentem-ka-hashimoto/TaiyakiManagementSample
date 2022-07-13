@@ -1,10 +1,10 @@
 import { DeluxeTaiyaki } from '../../Models/deluxeTaiyaki';
 import taiyakiKind from '../../Types/kind.js';
-import Size from '../../Types/size.js';
+import taiyakiSize from '../../Types/size.js';
 
 describe('dxTaiyakiTest', () => {
   test('propertyTest', () => {
-    let taiyaki = new DeluxeTaiyaki(Size.L);
+    let taiyaki = new DeluxeTaiyaki(taiyakiSize.L);
 
     // 種類の確認
     expect(taiyaki.kind).toBe(taiyakiKind.Deluxe);
@@ -13,30 +13,30 @@ describe('dxTaiyakiTest', () => {
     // 中身の確認
     expect(taiyaki.content).toBe('生クリームとカスタード');
     // サイズの確認
-    expect(taiyaki.size).toBe(Size.L);
+    expect(taiyaki.size).toBe(taiyakiSize.L);
   });
 
   test('propertyErrorTest', () => {
     let taiyaki: DeluxeTaiyaki;
     // Sサイズ
-    expect(() => (taiyaki = new DeluxeTaiyaki(Size.S))).toThrowError('The value is abnormal');
+    expect(() => (taiyaki = new DeluxeTaiyaki(taiyakiSize.S))).toThrowError('The value is abnormal');
     // Mサイズ
-    expect(() => (taiyaki = new DeluxeTaiyaki(Size.M))).toThrowError('The value is abnormal');
+    expect(() => (taiyaki = new DeluxeTaiyaki(taiyakiSize.M))).toThrowError('The value is abnormal');
   });
 
   test('setSizeErrorTest', () => {
-    let taiyaki = new DeluxeTaiyaki(Size.L);
+    let taiyaki = new DeluxeTaiyaki(taiyakiSize.L);
 
     // サイズの確認(変更前)
-    expect(taiyaki.size).toBe(Size.L);
+    expect(taiyaki.size).toBe(taiyakiSize.L);
     // Mへの変更
-    expect(() => (taiyaki.size = Size.M)).toThrowError('The value is abnormal');
+    expect(() => (taiyaki.size = taiyakiSize.M)).toThrowError('The value is abnormal');
     // Sへの変更
-    expect(() => (taiyaki.size = Size.S)).toThrowError('The value is abnormal');
+    expect(() => (taiyaki.size = taiyakiSize.S)).toThrowError('The value is abnormal');
   });
 
   test('getPriceTest', () => {
-    let taiyaki = new DeluxeTaiyaki(Size.L);
+    let taiyaki = new DeluxeTaiyaki(taiyakiSize.L);
     expect(taiyaki.getPrice()).toBe(300);
   });
 });

@@ -1,6 +1,6 @@
 import { Taiyaki } from './taiyaki';
 import taiyakiKind from '../Types/kind.js';
-import Size from '../Types/size.js';
+import taiyakiSize from '../Types/size.js';
 import { NormalTaiyaki } from './normalTaiyaki';
 import { CustardTaiyaki } from './custardTaiyaki';
 import { DeluxeTaiyaki } from './deluxeTaiyaki';
@@ -29,7 +29,7 @@ export class TaiyakiManager {
     return sum;
   }
 
-  public createTaiyaki(kind: taiyakiKind, size: Size): Taiyaki {
+  public createTaiyaki(kind: taiyakiKind, size: taiyakiSize): Taiyaki {
     switch (kind) {
       case taiyakiKind.Usually:
         return new NormalTaiyaki(size);

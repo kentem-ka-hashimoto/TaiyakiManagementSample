@@ -1,5 +1,5 @@
 import { Global } from './Models/Global.js';
-import Size from './Types/size.js';
+import taiyakiSize from './Types/size.js';
 
 // アラートメッセージ
 const FAILED_TO_CLOSE: string = '閉じるのに失敗しました。直接このタブを閉じて下さい。';
@@ -105,9 +105,9 @@ function createListView(): void {
     tdContent.textContent = taiyaki.content;
     // サイズ
     const tdSize: HTMLTableCellElement = document.createElement('td');
-    if (taiyaki.size === Size.S) tdSize.textContent = '小';
-    if (taiyaki.size === Size.M) tdSize.textContent = '中';
-    if (taiyaki.size === Size.L) tdSize.textContent = '大';
+    if (taiyaki.size === taiyakiSize.S) tdSize.textContent = '小';
+    if (taiyaki.size === taiyakiSize.M) tdSize.textContent = '中';
+    if (taiyaki.size === taiyakiSize.L) tdSize.textContent = '大';
     // 価格
     const tdPrice: HTMLTableCellElement = document.createElement('td');
     tdPrice.textContent = `${taiyaki.getPrice()}`;

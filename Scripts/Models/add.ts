@@ -1,5 +1,5 @@
 import taiyakiKind from '../Types/kind.js';
-import Size from '../Types/size.js';
+import taiyakiSize from '../Types/size.js';
 import { Global } from './Global.js';
 import { Taiyaki } from './taiyaki.js';
 
@@ -35,7 +35,7 @@ if (url.searchParams.get('mode') === 'edit') {
   setRadioBtnDisabled();
   // 購入ボタン
   purchaseBtn.addEventListener('click', () => {
-    const size: Size | undefined = checkSize();
+    const size: taiyakiSize | undefined = checkSize();
     // デラックスのサイズ確認とアラート表示
     try {
       if (size !== undefined) {
@@ -58,7 +58,7 @@ if (url.searchParams.get('mode') === 'add') {
   // 購入ボタン
   let taiyaki: Taiyaki;
   purchaseBtn.addEventListener('click', () => {
-    const size: Size | undefined = checkSize();
+    const size: taiyakiSize | undefined = checkSize();
     // デラックスのサイズ確認とアラート表示
     try {
       if (size !== undefined) {
@@ -84,10 +84,10 @@ cancelBtn.addEventListener('click', () => {
 });
 
 // サイズのチェックを行う関数
-export function checkSize(): Size | undefined {
-  if (lBtn.checked) return Size.L;
-  if (mBtn.checked) return Size.M;
-  if (sBtn.checked) return Size.S;
+export function checkSize(): taiyakiSize | undefined {
+  if (lBtn.checked) return taiyakiSize.L;
+  if (mBtn.checked) return taiyakiSize.M;
+  if (sBtn.checked) return taiyakiSize.S;
 }
 
 // ローカルストレージへの保存
@@ -101,13 +101,13 @@ function addLocalStorage(taiyaki: Taiyaki): void {
 function setRadioBtnDisabled(): void {
   menuDiv.classList.add('disabled');
   const kind: taiyakiKind = Global.taiyakiMg.taiyakiArr[index].kind;
-  const size: Size = Global.taiyakiMg.taiyakiArr[index].size;
+  const size: taiyakiSize = Global.taiyakiMg.taiyakiArr[index].size;
   usuBtn.checked = kind === taiyakiKind.Usually;
   cusBtn.checked = kind === taiyakiKind.Custard;
   dxBtn.checked = kind === taiyakiKind.Deluxe;
-  lBtn.checked = size === Size.L;
-  mBtn.checked = size === Size.M;
-  sBtn.checked = size === Size.S;
+  lBtn.checked = size === taiyakiSize.L;
+  mBtn.checked = size === taiyakiSize.M;
+  sBtn.checked = size === taiyakiSize.S;
   usuBtn.disabled = true;
   cusBtn.disabled = true;
   dxBtn.disabled = true;
