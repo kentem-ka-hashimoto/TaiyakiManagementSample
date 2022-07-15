@@ -1,8 +1,6 @@
 import { Global } from '../Models/global.js';
 import taiyakiSize from '../Types/taiyakiSize.js';
 
-// メーターの最小値
-const METER_MIN_VALUE: number = 0;
 // エラーメッセージ
 const ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';
 // アラートメッセージ
@@ -87,7 +85,7 @@ endBtn.addEventListener('click', () => {
 });
 
 // 所持金入力した際の処理
-inputPossessionMoney.addEventListener('change', () => {
+inputPossessionMoney.addEventListener('input', () => {
   possessionMoney = Number(inputPossessionMoney.value);
   updateMeter();
 });
@@ -158,13 +156,13 @@ function disabledCheck() {
 function updateMeter(): void {
   if (meter) {
     possessionMoney = Number(inputPossessionMoney.value);
-    try {
-      if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
-        throw new Error(ABNORMAL_VALUE_ERROR);
-      }
-    } catch {
-      alert(INSUFFICIENT_MONEY);
-    }
+    // try {
+    //   if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
+    //     throw new Error(ABNORMAL_VALUE_ERROR);
+    //   }
+    // } catch {
+    //   alert(INSUFFICIENT_MONEY);
+    // }
     meter.value = Global.taiyakiManager.getTotalPrice() / possessionMoney;
   }
 }

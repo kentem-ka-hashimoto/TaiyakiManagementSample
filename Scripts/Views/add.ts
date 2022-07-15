@@ -20,6 +20,7 @@ const index = Number(localStorage.getItem('index'));
 // クエリパラメータの取得
 const url = new URL(window.location.href);
 const isEditMode: boolean = url.searchParams.get('mode') === 'edit';
+
 // 所持金の取得
 const possessionMoney: number = Global.getPossessionMoney();
 
@@ -49,6 +50,7 @@ if (isEditMode) {
           Global.taiyakiManager.taiyakiArr[index].size = size;
         }
       }
+      // 以下所持金で変えるかどうかの例外処理
       try {
         if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
           throw new Error(ABNORMAL_VALUE_ERROR);
@@ -131,16 +133,6 @@ function setRadioBtnDisabled(): void {
   usuBtn.disabled = true;
   cusBtn.disabled = true;
   dxBtn.disabled = true;
-}
-
-function canBuyCheckError(): void {
-  try {
-    if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
-      throw new Error(ABNORMAL_VALUE_ERROR);
-    }
-  } catch {
-    alert(INSUFFICIENT_MONEY);
-  }
 }
 
 // メイン画面遷移
