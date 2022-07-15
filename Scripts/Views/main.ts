@@ -1,11 +1,23 @@
 import { Global } from '../Models/global.js';
 import taiyakiSize from '../Types/taiyakiSize.js';
 
+// メーターの最小値
+const METER_MIN_VALUE: number = 0;
+// エラーメッセージ
+const ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';
 // アラートメッセージ
 const FAILED_TO_CLOSE: string = '閉じるのに失敗しました。直接このタブを閉じて下さい。';
+const INSUFFICIENT_MONEY: string = '所持金が不足しています。';
 
 // tbodyの取得
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');
+// メーターの取得
+let meter: HTMLMeterElement | null = document.querySelector('meter');
+// 所持金の取得
+let possessionMoney: number = Global.getPossessionMoney();
+const inputPossessionMoney = document.getElementById('possessionMoney') as HTMLInputElement;
+inputPossessionMoney.value = possessionMoney.toString();
+
 // 合計金額の表示部分の取得
 let totalPrice: HTMLElement | null = document.getElementById('totalPrice');
 // 追加ボタンの取得
@@ -37,11 +49,13 @@ window.onload = function () {
     });
   });
   disabledCheck();
+  updateMeter();
 };
 
 // 追加ボタンの処理
 addBtn.addEventListener('click', () => {
   window.location.href = 'Add.html?mode=add';
+  Global.setPossessionMoney(possessionMoney);
 });
 
 // 削除ボタンの処理
@@ -61,6 +75,7 @@ editBtn.addEventListener('click', () => {
     if (check.checked) localStorage.setItem('index', `${index}`);
   });
   window.location.href = 'Add.html?mode=edit';
+  Global.setPossessionMoney(possessionMoney);
 });
 
 // 終了ボタンの処理
@@ -69,6 +84,12 @@ endBtn.addEventListener('click', () => {
   if (!window.closed) {
     alert(FAILED_TO_CLOSE);
   }
+});
+
+// 所持金入力した際の処理
+inputPossessionMoney.addEventListener('change', () => {
+  possessionMoney = Number(inputPossessionMoney.value);
+  updateMeter();
 });
 
 // 合計金額の取得
@@ -131,4 +152,19 @@ function disabledCheck() {
   });
   deleteBtn.disabled = 1 !== checkCount;
   editBtn.disabled = 1 !== checkCount;
+}
+
+// メーターに反映させる
+function updateMeter(): void {
+  if (meter) {
+    possessionMoney = Number(inputPossessionMoney.value);
+    try {
+      if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
+        throw new Error(ABNORMAL_VALUE_ERROR);
+      }
+    } catch {
+      alert(INSUFFICIENT_MONEY);
+    }
+    meter.value = Global.taiyakiManager.getTotalPrice() / possessionMoney;
+  }
 }

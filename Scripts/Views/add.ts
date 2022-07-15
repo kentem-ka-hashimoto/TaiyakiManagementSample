@@ -5,6 +5,9 @@ import { Taiyaki } from '../Models/taiyaki.js';
 
 // アラートメッセージ
 const ILLEGAL_CHOICE: string = `デラックスたい焼きは、'大'しか選択できません。`;
+const INSUFFICIENT_MONEY: string = '所持金が不足しています。';
+// エラーメッセージ
+const ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';
 
 // 購入ボタンの取得
 const purchaseBtn = document.getElementById('purchase') as HTMLButtonElement;
@@ -17,6 +20,8 @@ const index = Number(localStorage.getItem('index'));
 // クエリパラメータの取得
 const url = new URL(window.location.href);
 const isEditMode: boolean = url.searchParams.get('mode') === 'edit';
+// 所持金の取得
+const possessionMoney: number = Global.getPossessionMoney();
 
 // メニューラジオボタンの取得
 const menuBtns: NodeListOf<HTMLElement> = document.getElementsByName('kind');
@@ -45,6 +50,7 @@ if (isEditMode) {
         }
       }
       localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+      canBuyCheckError();
       RedirectMainPage();
     } catch {
       alert(ILLEGAL_CHOICE);
@@ -72,6 +78,7 @@ if (!isEditMode) {
         }
       }
       addLocalStorage(taiyaki);
+      canBuyCheckError();
       RedirectMainPage();
     } catch {
       alert(ILLEGAL_CHOICE);
@@ -112,6 +119,16 @@ function setRadioBtnDisabled(): void {
   usuBtn.disabled = true;
   cusBtn.disabled = true;
   dxBtn.disabled = true;
+}
+
+function canBuyCheckError(): void {
+  try {
+    if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
+      throw new Error(ABNORMAL_VALUE_ERROR);
+    }
+  } catch {
+    alert(INSUFFICIENT_MONEY);
+  }
 }
 
 // メイン画面遷移

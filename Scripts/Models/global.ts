@@ -20,4 +20,12 @@ export class Global {
       });
     }
   }
+
+  public static setPossessionMoney(possessionMoney: number): void {
+    localStorage.setItem('possessionMoney', possessionMoney.toString());
+  }
+
+  public static getPossessionMoney(): number {
+    return Number(localStorage.getItem('possessionMoney'));
+  }
 }
