@@ -8,7 +8,14 @@ button{
   line-height: 30px;
 }
 
-div#totalPrice {
+meter{
+  width: 300px;
+  line-height: 30px;
+  color: rgb(100, 230, 230, 0.8) ;
+
+}
+
+div.money {
   margin: 10px 0;
 }
 
