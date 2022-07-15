@@ -1,0 +1,19 @@
+export class PossessionMoney {
+  private _possessionMoney: number;
+
+  public get possessionMoney(): number {
+    return this._possessionMoney;
+  }
+
+  public set possessionMoney(value: number) {
+    this._possessionMoney = value;
+  }
+
+  incPossessionMoney(): void {
+    this._possessionMoney++;
+  }
+
+  decPossessionMoney(): void {
+    this._possessionMoney--;
+  }
+}
