@@ -49,9 +49,15 @@ if (isEditMode) {
           Global.taiyakiManager.taiyakiArr[index].size = size;
         }
       }
-      localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
-      canBuyCheckError();
-      RedirectMainPage();
+      try {
+        if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
+          throw new Error(ABNORMAL_VALUE_ERROR);
+        }
+        localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+        RedirectMainPage();
+      } catch {
+        alert(INSUFFICIENT_MONEY);
+      }
     } catch {
       alert(ILLEGAL_CHOICE);
     }
@@ -78,8 +84,6 @@ if (!isEditMode) {
         }
       }
       addLocalStorage(taiyaki);
-      canBuyCheckError();
-      RedirectMainPage();
     } catch {
       alert(ILLEGAL_CHOICE);
     }
@@ -101,8 +105,16 @@ export function checkSize(): taiyakiSize | undefined {
 // ローカルストレージへの保存
 function addLocalStorage(taiyaki: Taiyaki): void {
   Global.getLocalStorage();
-  Global.taiyakiManager.add(taiyaki);
-  localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+  try {
+    if (possessionMoney < Global.taiyakiManager.getTotalPrice() + taiyaki.getPrice()) {
+      throw new Error(ABNORMAL_VALUE_ERROR);
+    }
+    Global.taiyakiManager.add(taiyaki);
+    localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+    RedirectMainPage();
+  } catch {
+    alert(INSUFFICIENT_MONEY);
+  }
 }
 
 // ラジオボタンの初期値と有効無効の判定

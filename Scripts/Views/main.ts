@@ -36,7 +36,7 @@ window.onload = function () {
   createListView();
   setTotalPrice();
   // チェックボックスの設定(複数選択させない)
-  checks = document.querySelectorAll('input');
+  checks = document.getElementsByName('check') as NodeListOf<HTMLInputElement>;
   checks.forEach((check) => {
     check.addEventListener('change', () => {
       if (check.checked) {
