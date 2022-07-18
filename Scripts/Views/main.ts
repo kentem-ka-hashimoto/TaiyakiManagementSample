@@ -5,7 +5,6 @@ import taiyakiSize from '../Types/taiyakiSize.js';
 const ABNORMAL_VALUE_ERROR: string = 'The value is abnormal';
 // アラートメッセージ
 const FAILED_TO_CLOSE: string = '閉じるのに失敗しました。直接このタブを閉じて下さい。';
-const INSUFFICIENT_MONEY: string = '所持金が不足しています。';
 
 // tbodyの取得
 const tbody: HTMLTableSectionElement | null = document.querySelector('tbody');

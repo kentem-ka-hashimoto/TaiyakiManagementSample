@@ -50,7 +50,7 @@ if (isEditMode) {
           Global.taiyakiManager.taiyakiArr[index].size = size;
         }
       }
-      // 以下所持金で変えるかどうかの例外処理
+      // 以下、所持金で買えるかどうかの例外処理
       try {
         if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
           throw new Error(ABNORMAL_VALUE_ERROR);
