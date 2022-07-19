@@ -36,9 +36,11 @@ const lBtn = sizeBtns[0] as HTMLInputElement;
 const mBtn = sizeBtns[1] as HTMLInputElement;
 const sBtn = sizeBtns[2] as HTMLInputElement;
 
+Global.getLocalStorage();
+
+
 // 追加か編集かの判定
 if (isEditMode) {
-  Global.getLocalStorage();
   setRadioBtnDisabled();
   // 購入ボタン
   purchaseBtn.addEventListener('click', () => {
@@ -51,17 +53,17 @@ if (isEditMode) {
         }
       }
       // 以下、所持金で買えるかどうかの例外処理
-      try {
-        if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
-          throw new Error(ABNORMAL_VALUE_ERROR);
-        }
-        localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
-        RedirectMainPage();
-      } catch {
+      if (possessionMoney < Global.taiyakiManager.getTotalPrice()) {
+        throw new RangeError(ABNORMAL_VALUE_ERROR);
+      }
+      localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+      RedirectMainPage();
+    } catch (e) {
+      if (e instanceof TypeError) {
+        alert(ILLEGAL_CHOICE);
+      } else if (e instanceof RangeError) {
         alert(INSUFFICIENT_MONEY);
       }
-    } catch {
-      alert(ILLEGAL_CHOICE);
     }
   });
 }
@@ -84,10 +86,20 @@ if (!isEditMode) {
         } else {
           taiyaki = Global.taiyakiManager.createTaiyaki(taiyakiKind.Deluxe, size);
         }
+
+        if (possessionMoney < Global.taiyakiManager.getTotalPrice() + taiyaki.getPrice()) {
+          throw new RangeError(ABNORMAL_VALUE_ERROR);
+        }
+        Global.taiyakiManager.add(taiyaki);
+        localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
+        RedirectMainPage();
       }
-      addLocalStorage(taiyaki);
-    } catch {
-      alert(ILLEGAL_CHOICE);
+    } catch (e) {
+      if (e instanceof TypeError) {
+        alert(ILLEGAL_CHOICE);
+      } else if (e instanceof RangeError) {
+        alert(INSUFFICIENT_MONEY);
+      }
     }
   });
 }
@@ -104,20 +116,6 @@ export function checkSize(): taiyakiSize | undefined {
   if (sBtn.checked) return taiyakiSize.S;
 }
 
-// ローカルストレージへの保存
-function addLocalStorage(taiyaki: Taiyaki): void {
-  Global.getLocalStorage();
-  try {
-    if (possessionMoney < Global.taiyakiManager.getTotalPrice() + taiyaki.getPrice()) {
-      throw new Error(ABNORMAL_VALUE_ERROR);
-    }
-    Global.taiyakiManager.add(taiyaki);
-    localStorage.setItem('taiyakiData', JSON.stringify(Global.taiyakiManager.taiyakiArr));
-    RedirectMainPage();
-  } catch {
-    alert(INSUFFICIENT_MONEY);
-  }
-}
 
 // ラジオボタンの初期値と有効無効の判定
 function setRadioBtnDisabled(): void {

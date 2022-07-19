@@ -8,7 +8,7 @@ export class DeluxeTaiyaki implements Taiyaki {
   private _content: string = '生クリームとカスタード';
   constructor(private _size: taiyakiSize) {
     if (this.checkDxSize(this._size)) {
-      throw new Error(this.ABNORMAL_VALUE_ERROR);
+      throw new TypeError(this.ABNORMAL_VALUE_ERROR);
     }
   }
 
@@ -26,7 +26,7 @@ export class DeluxeTaiyaki implements Taiyaki {
 
   public set size(value: taiyakiSize) {
     if (this.checkDxSize(value)) {
-      throw new Error(this.ABNORMAL_VALUE_ERROR);
+      throw new TypeError(this.ABNORMAL_VALUE_ERROR);
     }
     this._size = value;
   }
